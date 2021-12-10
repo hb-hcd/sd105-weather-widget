@@ -46,6 +46,7 @@ const currentWeather = () => {
              .then(data=> {
                  curr_temp.innerHTML = `${data.main.temp}<span>&#8451;</span>`;
                  curr_condition.innerText = `${data.weather[0].description}`
+                 curr_img.src = `${imgUrl}${data.weather[0].icon}@2x.png`
              });
           
         })
