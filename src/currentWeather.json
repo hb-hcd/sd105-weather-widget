@@ -1,0 +1,47 @@
+// 20211210151552
+// https://api.openweathermap.org/data/2.5/weather?lat=49.8132188&lon=-97.1596764&units=metric&appid=7b8e6d74ff3768e9ec431b99631d6835
+
+{
+    "coord": {
+      "lon": -97.1597,
+      "lat": 49.8132
+    },
+    "weather": [
+      {
+        "id": 801,
+        "main": "Clouds",
+        "description": "few clouds",
+        "icon": "02d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": -5.73,
+      "feels_like": -5.73,
+      "temp_min": -6.69,
+      "temp_max": -5,
+      "pressure": 1006,
+      "humidity": 73
+    },
+    "visibility": 10000,
+    "wind": {
+      "speed": 0.89,
+      "deg": 71,
+      "gust": 2.24
+    },
+    "clouds": {
+      "all": 20
+    },
+    "dt": 1639170985,
+    "sys": {
+      "type": 2,
+      "id": 2022424,
+      "country": "CA",
+      "sunrise": 1639145741,
+      "sunset": 1639175267
+    },
+    "timezone": -21600,
+    "id": 5922850,
+    "name": "City Centre",
+    "cod": 200
+  }
