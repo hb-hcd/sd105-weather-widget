@@ -81,6 +81,17 @@ const fiveDayForecast = () => {
                     const days = randomTimeofFiveDays();
                         for (const day of days) {
                             console.log(data.list[day]);
+                            forcastDiv.insertAdjacentHTML(
+                                'beforeend',
+                                `<div class="day">
+                                <h3>Tuesday</h3>
+                                <img src="http://openweathermap.org/img/wn/${data.list[day].weather[0].icon}@2x.png" />
+                                <div class="description">${data.list[day].weather[0].description}</div>
+                                <div class="temp">
+                                  <span class="high">${data.list[day].main.temp_max}℃</span>/<span class="low">${data.list[day].main.temp_min}℃</span>
+                                </div>
+                              </div>`
+                            )
                         }
                     });
                 });
