@@ -21,13 +21,15 @@ const curr_img = document.querySelector('.current-conditions > img');
 const curr_temp = document.querySelector('.temp')
 const curr_condition = document.querySelector('.condition')
 const forcastDiv = document.querySelector('.forecast');
-const daysRange = [
-    [0, 7],  
-    [8, 15], 
-    [16, 23], 
-    [24, 31], 
-    [32, 39]  
-]
+
+//index range of each day in 5day/3hour forecast data
+const daysRange = [  
+    [0, 7],  // day1
+    [8, 15], // day2
+    [16, 23], //day3
+    [24, 31], //day4
+    [32, 39]  //day5
+  ]
 
 // function getUserLocation() {
 //     if (!navigator.geolocation) {
@@ -59,7 +61,7 @@ const currentWeather = () => {
     }
 }
 
-
+//randomly select 5 index for 5day/3hour forecast data
 const randomTimeofFiveDays = () => {
     const days = [];
     for (let i = 0; i < 5; i++) {
@@ -68,7 +70,7 @@ const randomTimeofFiveDays = () => {
     return days;
 }
 
-
+//get day by corresponding date
 const getWeekday = (str) => {
     const date = new Date(str);
     let day;
