@@ -22,11 +22,11 @@ const curr_temp = document.querySelector('.temp')
 const curr_condition = document.querySelector('.condition')
 const forcastDiv = document.querySelector('.forecast');
 const daysRange = [
-    [0, 7],
-    [8, 15],
-    [16, 23],
-    [24, 31],
-    [32, 39]
+    [0, 7],  
+    [8, 15], 
+    [16, 23], 
+    [24, 31], 
+    [32, 39]  
 ]
 
 // function getUserLocation() {
@@ -59,6 +59,7 @@ const currentWeather = () => {
     }
 }
 
+
 const randomTimeofFiveDays = () => {
     const days = [];
     for (let i = 0; i < 5; i++) {
@@ -67,6 +68,35 @@ const randomTimeofFiveDays = () => {
     return days;
 }
 
+
+const getWeekday = (str) => {
+    const date = new Date(str);
+    let day;
+    switch (date.getDay()) {
+        case 1:
+            day = 'Monday'; 
+            break;
+        case 2:
+            day = 'Tuesday';
+            break;
+        case 3:
+            day = 'Wednesday';
+            break;
+        case 4:
+            day = 'Thursday';
+            break;
+        case 5:
+            day = 'Friday';
+            break;
+        case 6:
+            day = 'Saturday';
+            break;
+        case 0:
+            day = 'Sunday'
+            break;
+    }
+    return day;
+}
 
 const fiveDayForecast = () => {
     if (!navigator.geolocation) {
@@ -80,11 +110,10 @@ const fiveDayForecast = () => {
                 .then(data => {
                     const days = randomTimeofFiveDays();
                         for (const day of days) {
-                            console.log(data.list[day]);
                             forcastDiv.insertAdjacentHTML(
                                 'beforeend',
                                 `<div class="day">
-                                <h3>Tuesday</h3>
+                                <h3>${getWeekday(data.list[day].dt_txt)}</h3>
                                 <img src="http://openweathermap.org/img/wn/${data.list[day].weather[0].icon}@2x.png" />
                                 <div class="description">${data.list[day].weather[0].description}</div>
                                 <div class="temp">
