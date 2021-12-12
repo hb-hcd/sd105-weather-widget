@@ -23,13 +23,13 @@ const curr_condition = document.querySelector('.condition')
 const forcastDiv = document.querySelector('.forecast');
 
 //index range of each day in 5day/3hour forecast data
-const daysRange = [  
+const daysRange = [
     [0, 7],  // day1
     [8, 15], // day2
     [16, 23], //day3
     [24, 31], //day4
     [32, 39]  //day5
-  ]
+]
 
 // function getUserLocation() {
 //     if (!navigator.geolocation) {
@@ -53,7 +53,7 @@ const currentWeather = () => {
             fetch(`${baseUrl}weather?lat=${lat}&lon=${lon}&units=metric&appid=${apikey}`)
                 .then(res => res.json())
                 .then(data => {
-                    curr_temp.innerHTML = `${data.main.temp}<span>&#8451;</span>`;
+                    curr_temp.innerHTML = `${Math.round(data.main.temp)}<span>&#8451;</span>`;
                     curr_condition.innerText = `${data.weather[0].description}`
                     curr_img.src = `${imgUrl}${data.weather[0].icon}@2x.png`;
                 });
@@ -61,11 +61,13 @@ const currentWeather = () => {
     }
 }
 
+
+
 //randomly select 5 index for 5day/3hour forecast data
 const randomTimeofFiveDays = () => {
     const days = [];
     for (let i = 0; i < 5; i++) {
-        days.push(Math.ceil(Math.random()*(daysRange[i][1]-daysRange[i][0])+daysRange[i][0]));
+        days.push(Math.ceil(Math.random() * (daysRange[i][1] - daysRange[i][0]) + daysRange[i][0]));
     }
     return days;
 }
@@ -76,7 +78,7 @@ const getWeekday = (str) => {
     let day;
     switch (date.getDay()) {
         case 1:
-            day = 'Monday'; 
+            day = 'Monday';
             break;
         case 2:
             day = 'Tuesday';
@@ -111,23 +113,23 @@ const fiveDayForecast = () => {
                 .then(res => res.json())
                 .then(data => {
                     const days = randomTimeofFiveDays();
-                        for (const day of days) {
-                            forcastDiv.insertAdjacentHTML(
-                                'beforeend',
-                                `<div class="day">
+                    for (const day of days) {
+                        forcastDiv.insertAdjacentHTML(
+                            'beforeend',
+                            `<div class="day">
                                 <h3>${getWeekday(data.list[day].dt_txt)}</h3>
                                 <img src="http://openweathermap.org/img/wn/${data.list[day].weather[0].icon}@2x.png" />
                                 <div class="description">${data.list[day].weather[0].description}</div>
                                 <div class="temp">
-                                  <span class="high">${data.list[day].main.temp_max}℃</span>/<span class="low">${data.list[day].main.temp_min}℃</span>
+                                  <span class="high">${Math.round(data.list[day].main.temp_max)}℃</span>/<span class="low">${Math.round(data.list[day].main.temp_min)}℃</span>
                                 </div>
                               </div>`
-                            )
-                        }
-                    });
+                        )
+                    }
                 });
-        }
+        });
     }
+}
 
 
 currentWeather();
